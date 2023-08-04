@@ -13,12 +13,12 @@ contract CryptoPunks is ERC721, ERC721Enumerable {
     Counters.Counter private _idCounter;
 
     constructor(uint256 _maxSupply) ERC721("CryptoPunks", "CRPTPKS") {
-        maxSupply = _maxSupply
+        maxSupply = _maxSupply;
     }
 
-    function mint(address to, uint256 amount) public {
+    function mint() public {
         uint256 current = _idCounter.current();
-        require(current < maxSupply, "No more CryptoPunks left D':")
+        require(current < maxSupply, "No more CryptoPunks left D':");
         _safeMint(msg.sender, current);
     }
 
