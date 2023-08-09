@@ -8,10 +8,13 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 // import "@openzeppelin/contracts/utils/Base64.sol";
 import "./Base64.sol";
 import "./CryptoPunksDNA.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 import "hardhat/console.sol";
 
 contract CryptoPunks is ERC721, ERC721Enumerable, CryptoPunksDNA {
     using Counters for Counters.Counter;
+    using Strings for uint256;
+
     uint256 public maxSupply;
     mapping(uint256 => uint256) public tokenDNA;
 
@@ -95,7 +98,7 @@ contract CryptoPunks is ERC721, ERC721Enumerable, CryptoPunksDNA {
         string memory jsonURI = Base64.encode(
             abi.encodePacked(
                 '{ "name": "CryptoPunks #',
-                tokenId,
+                tokenId.toString(),
                 '", "description": "Crypto Punks are randomized Avataaars stored on chain to teach DApp development", "image": "',
                 image,
                 '"}'
