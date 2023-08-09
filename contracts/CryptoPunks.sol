@@ -8,6 +8,7 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 // import "@openzeppelin/contracts/utils/Base64.sol";
 import "./Base64.sol";
 import "./CryptoPunksDNA.sol";
+import "hardhat/console.sol";
 
 contract CryptoPunks is ERC721, ERC721Enumerable, CryptoPunksDNA {
     using Counters for Counters.Counter;
@@ -26,6 +27,7 @@ contract CryptoPunks is ERC721, ERC721Enumerable, CryptoPunksDNA {
 
         tokenDNA[current] = deterministicPseudoRandomDNA(current, msg.sender);
         _safeMint(msg.sender, current);
+        _idCounter.increment();
     }
 
     function _baseURI() internal pure override returns(string memory) {
